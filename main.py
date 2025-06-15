@@ -2,6 +2,7 @@ import pygame
 
 import assets
 import configs
+from objects.ball import Ball
 from objects.block import Block
 from objects.circle import Circle
 
@@ -17,6 +18,7 @@ sprites = pygame.sprite.LayeredUpdates()
 
 Circle(sprites)
 Block(sprites)
+ball = Ball(sprites)
 
 while running:
     for event in pygame.event.get():
@@ -26,6 +28,9 @@ while running:
     screen.fill(configs.SCREEN_BG_COLOUR)
 
     sprites.draw(screen)
+    sprites.update()
+
+    ball.check_collisions(sprites)
 
     pygame.display.flip()
 
